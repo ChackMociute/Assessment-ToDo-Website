@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Completed assessments</h1>
+
+<body>
+    {% for ass in assessments %}
+    <div>
+        <p>{{ ass.title }}</p>
+    </div>
+    <div>
+        <p>{{ ass.code }}</p>
+    </div>
+    <div>
+        <p>{{ ass.deadline }}</p>
+    </div>
+    <div>
+        <p>{{ ass.description }}</p>
+    </div>
+    <div>
+        <p>{{ ass.complete }}</p>
+    </div>
+    {% endfor %}
+</body>
+{% endblock %}
