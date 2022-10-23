@@ -1,8 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
-from flask_wtf import FlaskForm
 from app import app, db
 from .models import Assessment
-from .forms import AssessmentForm
+from .forms import AssessmentForm, ParameterForm
 
 def complete(list):
     for id in list:
@@ -18,13 +17,15 @@ def delete(list):
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    form = FlaskForm()
-    if form.validate_on_submit:
-        if 'home_button' in request.form:
-            globals()[request.form['home_button']](request.form.getlist('assessment_id'))
-            db.session.commit()
-            return redirect(url_for('home'))
-    return render_template('home.html', assessments=Assessment.query.all())
+    form = ParameterForm()
+
+    if 'home_button' in request.form:
+        globals()[request.form['home_button']](request.form.getlist('assessment_id'))
+        db.session.commit()
+        return redirect(url_for('home'))
+    if 'show_button' in request.form:
+        return redirect(url_for('home'))
+    return render_template('home.html', assessments=Assessment.query.all(), form=form)
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_new():
