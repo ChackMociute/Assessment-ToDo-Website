@@ -1,10 +1,29 @@
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
+from flask_wtf import FlaskForm
 from app import app, db
 from .models import Assessment
 from .forms import AssessmentForm
 
+def complete(list):
+    for id in list:
+        Assessment.query.get(int(id)).complete = True
+
+def uncomplete(list):
+    for id in list:
+        Assessment.query.get(int(id)).complete = False
+
+def delete(list):
+    for id in list:
+        db.session.delete(Assessment.query.get(int(id)))
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
+    form = FlaskForm()
+    if form.validate_on_submit:
+        if 'home_button' in request.form:
+            globals()[request.form['home_button']](request.form.getlist('assessment_id'))
+            db.session.commit()
+            return redirect(url_for('home'))
     return render_template('home.html', assessments=Assessment.query.all())
 
 @app.route('/add', methods=['GET', 'POST'])

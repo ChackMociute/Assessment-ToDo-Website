@@ -4,40 +4,58 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-10">
+        <div class="col-6">
             <h1>All my assessments</h1>
-
-            <body>
-                <table class="table table-hover table-bordered">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">Due date</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Course</th>
-                            <th class="col-6">Description</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for ass in assessments %}
-                        <tr>
-                            <th scope="row">{{ ass.deadline }}</th>
-                            <td>{{ ass.title }}</td>
-                            <td>{{ ass.code }}</td>
-                            <td>{{ ass.description }}</td>
-                            <td>
-                                {% if ass.complete %}
-                                Complete
-                                {% else %}
-                                Uncomplete
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </body>
         </div>
     </div>
+
+    <body>
+        <form action="" method="post" name="Home button">
+            <div class="row">
+                <div class="col-5 offset-5" style="height: 50px">
+                    <button type="submit" name="home_button" value="complete" class="btn btn-success col-4">Mark
+                        complete</button>
+                    <button type="submit" name="home_button" value="uncomplete" class="btn btn-info col-4">Mark
+                        uncomplete</button>
+                    <button type="submit" name="home_button" value="delete" class="btn btn-danger col-3">Delete</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <table class="table table-hover table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col"><input type="checkbox"></th>
+                                <th scope="col">Due date</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Course</th>
+                                <th class="col-6">Description</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ass in assessments %}
+                            <tr>
+                                <td><input type="checkbox" name="assessment_id" , value="{{ ass.id }}"></td>
+                                <th scope=" row">{{ ass.deadline }}</th>
+                                <td>{{ ass.title }}</td>
+                                <td>{{ ass.code }}</td>
+                                <td>{{ ass.description }}</td>
+                                <td>
+                                    {% if ass.complete %}
+                                    Complete
+                                    {% else %}
+                                    Uncomplete
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        </form>
+    </body>
+</div>
+</div>
 </div>
 {% endblock %}
