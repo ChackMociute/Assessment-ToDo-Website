@@ -1,34 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Add assessment</h1>
-<form action="" method="post" name="New assessment">
-    {{ form.hidden_tag() }}
+<div class="col-lg-8 col-md-10 col-sm-12">
+    <h1>Add assessment</h1>
+    <form action="" method="post" name="New assessment">
+        {{ form.hidden_tag() }}
 
-    {{ form.title(class_='form-control') }}
-    {% for error in form.title.errors %}
-    <div class="alert alert-danger" role="alert">
-        [{{ error }}]
-    </div>
-    {% endfor %}
-    {{ form.code(class_='form-control') }}
-    {% for error in form.code.errors %}
-    <div class="alert alert-danger" role="alert">
-        [{{ error }}]
-    </div>
-    {% endfor %}
-    {{ form.deadline(class_='form-control') }}
-    {% for error in form.deadline.errors %}
-    <div class="alert alert-danger" role="alert">
-        [{{ error }}]
-    </div>
-    {% endfor %}
-    {{ form.description(class_='form-control') }}
-    {% for error in form.description.errors %}
-    <div class="alert alert-danger" role="alert">
-        [{{ error }}]
-    </div>
-    {% endfor %}
-    <p><input type="submit" class="btn btn-primary" value="Add"></p>
-</form>
+        <div class="input-group">
+            <div>
+                <h4>Title</h4>
+                {{ form.title(class_='form-control') }}
+            </div>
+            <div>
+                <h4>Course code</h4>
+                {{ form.code(class_='form-control') }}
+            </div>
+            <div>
+                <h4>Due date</h4>
+                {{ form.deadline(class_='form-control') }}
+            </div>
+            {% for error in form.title.errors %}
+            <div class="alert alert-danger" role="alert">
+                [{{ error }}]
+            </div>
+            {% endfor %}
+            {% for error in form.code.errors %}
+            <div class="alert alert-danger" role="alert">
+                [{{ error }}]
+            </div>
+            {% endfor %}
+            {% for error in form.deadline.errors %}
+            <div class="alert alert-danger" role="alert">
+                [{{ error }}]
+            </div>
+            {% endfor %}
+        </div>
+        <div style="height: 200px">
+            <h4>Description</h4>
+            {{ form.description(class_='form-control', style="height: 150px") }}
+            {% for error in form.description.errors %}
+            <div class="alert alert-danger" role="alert">
+                [{{ error }}]
+            </div>
+            {% endfor %}
+        </div>
+        <p><input type="submit" class="btn btn-primary col-offset-8 col-4" value="Add"></p>
+    </form>
+</div>
 {% endblock %}
