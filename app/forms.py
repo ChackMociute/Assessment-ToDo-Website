@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DateField
+from wtforms import StringField, DateField, TextAreaField
 from wtforms.validators import DataRequired, ValidationError
 from datetime import date
 
@@ -17,4 +17,4 @@ class AssessmentForm(FlaskForm):
     title = StringField('title', validators=[DataRequired(), length_check()])
     code = StringField('title', validators=[DataRequired(), length_check(20)])
     deadline = DateField('deadline', format='%Y-%m-%d', validators=[DataRequired(), date_check])
-    description = StringField('description', validators=[DataRequired(), length_check(1000)])
+    description = TextAreaField('description', validators=[DataRequired(), length_check(1000)])
