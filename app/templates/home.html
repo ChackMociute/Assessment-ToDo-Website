@@ -4,22 +4,33 @@
 <h1>All my assessments</h1>
 
 <body>
-    {% for ass in assessments %}
-    <div>
-        <p>{{ ass.title }}</p>
-    </div>
-    <div>
-        <p>{{ ass.code }}</p>
-    </div>
-    <div>
-        <p>{{ ass.deadline }}</p>
-    </div>
-    <div>
-        <p>{{ ass.description }}</p>
-    </div>
-    <div>
-        <p>{{ ass.complete }}</p>
-    </div>
-    {% endfor %}
+    <table class="table table-hover table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Due date</th>
+                <th scope="col">Title</th>
+                <th scope="col">Course</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ass in assessments %}
+            <tr>
+                <th scope="row">{{ ass.deadline }}</th>
+                <td>{{ ass.title }}</td>
+                <td>{{ ass.code }}</td>
+                <td style="min-width: 500px">{{ ass.description }}</td>
+                <td>
+                    {% if ass.complete %}
+                    Completed
+                    {% else %}
+                    Uncompleted
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 {% endblock %}

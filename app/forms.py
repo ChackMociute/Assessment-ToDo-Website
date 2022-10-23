@@ -11,7 +11,7 @@ def length_check(length=50):
 
 def date_check(form, field):
     if field.data < date.today():
-        raise ValidationError("Date should not be in the past")
+        raise ValidationError("Due date should not be in the past")
 
 class AssessmentForm(FlaskForm):
     title = StringField('title', validators=[DataRequired(), length_check()])
