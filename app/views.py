@@ -3,6 +3,7 @@ from app import app, db
 from .models import Assessment
 from .forms import AssessmentForm
 
+# Following three methods perform database updates
 def mark_complete(id):
     Assessment.query.get(int(id)).complete = True
 
@@ -12,9 +13,11 @@ def mark_uncomplete(id):
 def delete(id):
     db.session.delete(Assessment.query.get(int(id)))
 
+# Return True if any button with provided name is pressed
 def button_pressed(button):
     return button in request.form
 
+# Change database entries with ticked checkboxes
 def modify_selected(func_name):
     for id in request.form.getlist('assessment_id'):
         globals()[func_name](id)
@@ -26,6 +29,7 @@ def base(page, assessments):
         return redirect(url_for(page))
     return render_template(f'{page}.html', assessments=assessments)
 
+# Collect and sort by due date requested assessments
 def collect_assessments(complete=True, incomplete=True):
     return sorted([ass for ass in Assessment.query.all()
                    if ass.complete == complete
