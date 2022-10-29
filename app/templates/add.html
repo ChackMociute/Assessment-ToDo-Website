@@ -3,7 +3,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 offset-lg-4 offset-md-3">
             <h1>Add assessment</h1>
         </div>
     </div>
@@ -14,44 +14,50 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-3">
+            <div class="col-lg-4 col-md-6 col-sm-10 offset-lg-2 offset-md-1">
                 <h4>Title</h4>
                 {{ form.title(class_='form-control') }}
             </div>
-            <div class="col-2">
+            <div class="col-lg-2 col-md-4 col-sm-8">
                 <h4>Course code</h4>
                 {{ form.code(class_='form-control') }}
             </div>
-            <div class="col-2">
+            <div class="col-lg-2 col-md-3 col-sm-4 offset-lg-0 offset-md-1">
                 <h4>Due date</h4>
                 {{ form.deadline(class_='form-control') }}
             </div>
         </div>
         <div class="row">
-            {% for error in form.title.errors %}
-            <div class="col-3 alert alert-danger" role="alert">
-                [{{ error }}]
+            <div class="col-lg-8 col-md-10 col-sm-12 offset-lg-2 offset-md-1">
+                {% for error in form.title.errors %}
+                <div class="alert alert-danger" role="alert">
+                    [{{ error }}]
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-            {% for error in form.code.errors %}
-            <div class="col-2 alert alert-danger" role="alert">
-                [{{ error }}]
+            <div class="col-lg-8 col-md-10 col-sm-12 offset-lg-2 offset-md-1">
+                {% for error in form.code.errors %}
+                <div class="alert alert-danger" role="alert">
+                    [{{ error }}]
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-            {% for error in form.deadline.errors %}
-            <div class="col-2 alert alert-danger" role="alert">
-                [{{ error }}]
+            <div class="col-lg-8 col-md-10 col-sm-12 offset-lg-2 offset-md-1">
+                {% for error in form.deadline.errors %}
+                <div class="alert alert-danger" role="alert">
+                    [{{ error }}]
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
         <div class="row">
-            <div class="col-7" style="height: 200px">
+            <div class="col-lg-8 col-md-10 col-sm-12 offset-lg-2 offset-md-1" style="height: 200px">
                 <h4>Description</h4>
                 {{ form.description(class_='form-control', style="height: 150px") }}
             </div>
         </div>
         <div class="row">
-            <div class="col-7">
+            <div class="col-lg-8 col-md-10 col-sm-12 offset-lg-2 offset-md-1">
                 {% for error in form.description.errors %}
                 <div class="alert alert-danger" role="alert">
                     [{{ error }}]
@@ -60,10 +66,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-lg-4 col-md-6 col-sm-12 offset-lg-2 offset-md-1">
                 <input type="submit" class="btn btn-primary col-12" value="Add">
             </div>
-            <div class="col-3">
+            <div class="col-lg-4 col-md-4 col-sm-12">
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 {% for message in messages %}
