@@ -1,25 +1,10 @@
-{% extends "base.html" %}
-{% block content %}
-
+{% extends "table.html" %}
+{% block title %}
 <h1>Uncompleted assessments</h1>
+{% endblock %}
 
-<body>
-    {% for ass in assessments %}
-    <div>
-        <p>{{ ass.title }}</p>
-    </div>
-    <div>
-        <p>{{ ass.code }}</p>
-    </div>
-    <div>
-        <p>{{ ass.deadline }}</p>
-    </div>
-    <div>
-        <p>{{ ass.description }}</p>
-    </div>
-    <div>
-        <p>{{ ass.complete }}</p>
-    </div>
-    {% endfor %}
-</body>
+{% block buttons %}
+<button type="submit" name="incomplete_button" value="mark_complete" class="btn btn-success offset-4 col-4">Mark
+    complete</button>
+<button type="submit" name="incomplete_button" value="delete" class="btn btn-danger col-3">Delete</button>
 {% endblock %}

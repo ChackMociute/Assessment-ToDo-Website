@@ -1,0 +1,57 @@
+{% include "base.html" %}
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            {% block title %}{% endblock %}
+        </div>
+    </div>
+
+    <body>
+        <form action="" method="post">
+            <div class="row">
+                <div class="col-5 offset-5" style="height: 50px">
+                    {% block buttons %}{% endblock %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <table class="table table-hover table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Due date</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Course</th>
+                                <th class="col-6">Description</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ass in assessments %}
+                            <tr>
+                                <td><input type="checkbox" name="assessment_id" , value="{{ ass.id }}"></td>
+                                <th scope=" row">{{ ass.deadline }}</th>
+                                <td>{{ ass.title }}</td>
+                                <td>{{ ass.code }}</td>
+                                <td>{{ ass.description }}</td>
+                                <td>
+                                    {% if ass.complete %}
+                                    Complete
+                                    {% else %}
+                                    Uncomplete
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        </form>
+    </body>
+</div>
+</div>
+</div>
+{% endblock %}
